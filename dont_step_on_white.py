@@ -3,8 +3,8 @@ import tkinter,random
 class game():
 	def __init__(self):
 
-		self.canvasWidth = 1000
-		self.canvasHeight = 900
+		self.canvasWidth = 500
+		self.canvasHeight = 700
 
 		self.canvas = tkinter.Canvas(width = self.canvasWidth, height = self.canvasHeight, bg = 'white')
 		self.canvas.pack()

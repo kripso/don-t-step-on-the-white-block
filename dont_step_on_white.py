@@ -32,8 +32,6 @@ class game():
 
 		self.move_blocks = []
 
-		self.number_of_blocks = 1000
-
 		self.n = 0
 		self._n = 0
 		
@@ -43,7 +41,7 @@ class game():
 		self.number_of_blocks = 25
 
 		self.grid()
-		self.rand_block2()
+		self.rand_blocks()
 
 	def Classic(self):
 		self.canvas.delete('all')
@@ -55,7 +53,7 @@ class game():
 
 		self.move_blocks = []
 
-		self.number_of_blocks = 1000
+		self.number_of_blocks = 2000
 
 		self.n = 0
 		self._n = 0
@@ -66,8 +64,9 @@ class game():
 
 		self.time=-1
 		self._time = -1
+
 		self.grid()
-		self.rand_block2()
+		self.rand_blocks()
 
 	def Start_screen(self):
 
@@ -153,7 +152,7 @@ class game():
 		self.canvas.create_line(3, 3, x1[1], 3)
 		self.canvas.create_line(x1[1], 0, x1[1], y1[1])
 
-	def rand_block2(self):
+	def rand_blocks(self):
 		x1 = [self.canvasWidth/2/2 - 3, self.canvasWidth/2 - 3, self.canvasWidth/2/2 + self.canvasWidth/2 - 3, self.canvasWidth - 3]
 		x2 = [6,self.canvasWidth/2/2 + 3, self.canvasWidth/2 + 3, self.canvasWidth/2/2 + self.canvasWidth/2 + 3]
 		y1 = [self.canvasHeight - 3]

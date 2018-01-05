@@ -98,11 +98,11 @@ class game():
 		for button in self.deletableButtons:
 			button.destroy()
 
-		button = tkinter.Button (width=15, height=3,  text='Long run', font='Arial 15 bold', activeforeground='#1010D2', command=self.Classic)
+		button = tkinter.Button (width=15, height=2,  text='Long run', font='Arial 15 bold', activeforeground='#1010D2', command=self.Classic)
 		button.place (x=self.canvasWidth/2, y=self.canvasHeight/2-35, anchor="c")
 		self.deletableButtons.append(button)
 
-		button = tkinter.Button (width=15, height=3,  text='Time attack', font='Arial 15 bold', activeforeground='#1010D2', command=self.Arcade)
+		button = tkinter.Button (width=15, height=2,  text='Time attack', font='Arial 15 bold', activeforeground='#1010D2', command=self.Arcade)
 		button.place (x=self.canvasWidth/2, y=self.canvasHeight/2+35, anchor="c")
 		self.deletableButtons.append(button)
 
@@ -162,13 +162,29 @@ class game():
 		for i in range(self.number_of_blocks):
 			i1 = random.randrange(len(x1))	
 			self.canvas.create_rectangle(x1[i1], y1[0], x2[i1], y2[0], fill='black', tags=['block' +str(self._n), 'blocks'])
+			_x1=x1[i1]-self.canvasWidth/2/2/2+3
+			_y1=y1[0]-self.canvasWidth/2/2/2+3-self.canvasWidth/2/2/2/2/2-self.canvasWidth/2/2/2/2/2/2
+
+			if i1==0:
+				self.canvas.create_text(_x1, _y1,text='A', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+			elif i1==1:
+				self.canvas.create_text(_x1, _y1,text='S', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+			elif i1==2:
+				self.canvas.create_text(_x1, _y1,text='D', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+			elif i1==3:
+				self.canvas.create_text(_x1, _y1,text='F', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+
 			y1.insert(0, y1[0] - self.canvasHeight/2/2)
 			y2.insert(0, y2[0] - self.canvasHeight/2/2)
+
 			self.move_blocks.append(i1)
+
 			self._n += 1
 
 	def block_move(self):
+
 		if self.time>0:
+
 			if self.number == self.move_blocks[self.n] and self.n==self.plus_time:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
@@ -186,18 +202,23 @@ class game():
 				self.Start_screen()
 
 		elif self._time==-1:
+
 			self.time=10
 			self._time = 1
+
 			if self.number == self.move_blocks[self.n]:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
 				self.actualscore+=1
 				self.control=2
 				self.timer()
+
 		self.n += 1
 
 	def _block_move(self):
+
 		if self.time>0:
+
 			if self.number == self.move_blocks[self.n] and self.n==self.number_of_blocks-1:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
@@ -215,29 +236,36 @@ class game():
 				self.Start_screen()
 
 		elif self._time==-1:
+
 			self.time=10
 			self._time = 1
+
 			if self.number == self.move_blocks[self.n]:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
 				self.control=2
 				self._timer()
+
 		self.n += 1
 
 	def _timer(self):
+
 		if self.time<=0:
+
 			self.control=1
 			self.win_lose = 1
 			self.Start_screen()
 
 		if self.control==2:
+
 			self.canvas.delete('time')
 			self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2, text='time: ' +str(self.time),font='Arial 30 bold',fill='red',tags='time')
 			self.time-=0.5
 			self.canvas.after(500,self._timer)
 
 	def timer(self):
-		if self.time==-1:
+		
+		if self.time==0:
 			self.control=1
 			self.Start_screen()
 

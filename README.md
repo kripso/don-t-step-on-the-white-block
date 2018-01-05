@@ -1,2 +1,2 @@
-# don-t-step-on-the-white-block
+# dont-step-on-the-white-block
 # use a,s,d,f    for moving

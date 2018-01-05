@@ -98,11 +98,11 @@ class game():
 		for button in self.deletableButtons:
 			button.destroy()
 
-		button = tkinter.Button (width=15, height=3,  text='Classic mode', font='Arial 15 bold', activeforeground='#1010D2', command=self.Classic)
+		button = tkinter.Button (width=15, height=3,  text='Long run', font='Arial 15 bold', activeforeground='#1010D2', command=self.Classic)
 		button.place (x=self.canvasWidth/2, y=self.canvasHeight/2-35, anchor="c")
 		self.deletableButtons.append(button)
 
-		button = tkinter.Button (width=15, height=3,  text='Arcade mode', font='Arial 15 bold', activeforeground='#1010D2', command=self.Arcade)
+		button = tkinter.Button (width=15, height=3,  text='Time attack', font='Arial 15 bold', activeforeground='#1010D2', command=self.Arcade)
 		button.place (x=self.canvasWidth/2, y=self.canvasHeight/2+35, anchor="c")
 		self.deletableButtons.append(button)
 

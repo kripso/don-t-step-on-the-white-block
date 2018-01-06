@@ -165,13 +165,13 @@ class game():
 			_y1=y1[0]-self.canvasWidth/2/2/2+3-self.canvasWidth/2/2/2/2/2-self.canvasWidth/2/2/2/2/2/2
 
 			if i1==0:
-				self.canvas.create_text(_x1, _y1,text='A', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+				self.canvas.create_text(_x1, _y1,text='A', fill='white',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
 			elif i1==1:
-				self.canvas.create_text(_x1, _y1,text='S', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+				self.canvas.create_text(_x1, _y1,text='S', fill='white',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
 			elif i1==2:
-				self.canvas.create_text(_x1, _y1,text='D', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+				self.canvas.create_text(_x1, _y1,text='D', fill='white',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
 			elif i1==3:
-				self.canvas.create_text(_x1, _y1,text='F', fill='red',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
+				self.canvas.create_text(_x1, _y1,text='F', fill='white',font='Arial 40 bold', tags=['block' +str(self._n), 'blocks'])
 
 			y1.insert(0, y1[0] - self.canvasHeight/2/2)
 			y2.insert(0, y2[0] - self.canvasHeight/2/2)
@@ -202,15 +202,13 @@ class game():
 			self.n += 1
 
 		elif self._time==-1:
-
-			self.time=10
-			self._time = 1
-
 			if self.number == self.move_blocks[self.n]:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
 				self.actualscore+=1
 				self.control=2
+				self.time=10
+				self._time = 1
 				self.timer()
 				self.n += 1
 
@@ -243,7 +241,6 @@ class game():
 				self.control=2
 				self.time=10
 				self._time = 1
-
 				self._timer()
 
 				self.n += 1
@@ -259,7 +256,7 @@ class game():
 		if self.control==2:
 
 			self.canvas.delete('time')
-			self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2, text='time: ' +str(self.time),font='Arial 30 bold',fill='red',tags='time')
+			self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2/2, text='time: ' +str(self.time),font='Arial 30 bold',fill='red',tags='time')
 			self.time-=0.5
 			self.canvas.after(500,self._timer)
 
@@ -271,7 +268,7 @@ class game():
 
 		if self.control==2:
 			self.canvas.delete('time')
-			self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2, text='time: ' +str(self.time),font='Arial 30 bold',fill='red',tags='time')
+			self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2/2, text='time: ' +str(self.time),font='Arial 30 bold',fill='red',tags='time')
 			self.time-=1
 			self.canvas.after(1000,self.timer)
 game()

@@ -199,6 +199,7 @@ class game():
 			else:
 				self.control=1
 				self.Start_screen()
+			self.n += 1
 
 		elif self._time==-1:
 
@@ -211,8 +212,7 @@ class game():
 				self.actualscore+=1
 				self.control=2
 				self.timer()
-
-		self.n += 1
+				self.n += 1
 
 	def _block_move(self):
 
@@ -233,19 +233,20 @@ class game():
 				self.control=1
 				self.win_lose=1
 				self.Start_screen()
+			self.n += 1
 
 		elif self._time==-1:
-
-			self.time=10
-			self._time = 1
-
+			
 			if self.number == self.move_blocks[self.n]:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
 				self.control=2
+				self.time=10
+				self._time = 1
+
 				self._timer()
 
-		self.n += 1
+				self.n += 1
 
 	def _timer(self):
 

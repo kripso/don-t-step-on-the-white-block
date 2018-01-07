@@ -34,7 +34,7 @@ class game():
 
 		self.n = 0
 		self._n = 0
-		
+		self.s=0
 		self.time = 0
 		self._time = -1
 
@@ -181,27 +181,27 @@ class game():
 			self._n += 1
 
 	def block_move(self):
+		if self.control !=1:
+			if self.time>0:
 
-		if self.time>0:
+				if self.number == self.move_blocks[self.n] and self.n==self.plus_time:
+					self.canvas.delete('block' +str(self.n))
+					self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
+					self.actualscore+=1	
+					self.time+=10
+					self.plus_time*=2
 
-			if self.number == self.move_blocks[self.n] and self.n==self.plus_time:
-				self.canvas.delete('block' +str(self.n))
-				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
-				self.actualscore+=1	
-				self.time+=10
-				self.plus_time*=2
+				elif self.number == self.move_blocks[self.n]:
+					self.canvas.delete('block' +str(self.n))
+					self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
+					self.actualscore+=1
 
-			elif self.number == self.move_blocks[self.n]:
-				self.canvas.delete('block' +str(self.n))
-				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
-				self.actualscore+=1
+				else:
+					self.control=1
+					self.Start_screen()
+				self.n += 1
 
-			else:
-				self.control=1
-				self.Start_screen()
-			self.n += 1
-
-		elif self._time==-1:
+		if self._time==-1:
 			if self.number == self.move_blocks[self.n]:
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
@@ -213,37 +213,52 @@ class game():
 				self.n += 1
 
 	def _block_move(self):
+		if self.control !=1:
+			if self.time>0:
 
-		if self.time>0:
+				if self.number == self.move_blocks[self.n] and self.n==self.number_of_blocks-1:
 
-			if self.number == self.move_blocks[self.n] and self.n==self.number_of_blocks-1:
-				self.canvas.delete('block' +str(self.n))
-				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
-				self.control=1
-				self.win_lose=0
-				self.Start_screen()
+					self.canvas.delete('block' +str(self.n))
+					self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
+					self.control=1
+					self.win_lose=0
+					self.n += 1
+					self._n -= 1
+					self.canvas.delete('number')
+					self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2/2,text=''+str(self._n),font='Arial 40 bold',fill='red',tags='number')
+					self.Start_screen()
 
-			elif self.number == self.move_blocks[self.n]:
-				self.canvas.delete('block' +str(self.n))
-				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
+				elif self.number == self.move_blocks[self.n]:
 
-			else:
-				self.control=1
-				self.win_lose=1
-				self.Start_screen()
-			self.n += 1
+					self.canvas.delete('block' +str(self.n))
+					self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
+					self.n += 1
+					self._n -= 1
+					self.canvas.delete('number')
+					self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2/2,text=''+str(self._n),font='Arial 40 bold',fill='red',tags='number')
 
-		elif self._time==-1:
+				else:
+					self.control=1
+					self.win_lose=1
+					self.Start_screen()
+
+		if self._time==-1:
 			
 			if self.number == self.move_blocks[self.n]:
+
 				self.canvas.delete('block' +str(self.n))
 				self.canvas.move('blocks', 0, + self.canvasHeight/2/2)
+
 				self.control=2
+
 				self.time=10
 				self._time = 1
+				self.n += 1
+				self._n -= 1
+				self.canvas.delete('number')
+				self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2/2,text=''+str(self._n),font='Arial 40 bold',fill='red',tags='number')
 				self._timer()
 
-				self.n += 1
 
 	def _timer(self):
 
@@ -256,8 +271,9 @@ class game():
 		if self.control==2:
 
 			self.canvas.delete('time')
-			self.canvas.create_text(self.canvasWidth/2,self.canvasHeight/2/2/2/2, text='time: ' +str(self.time),font='Arial 30 bold',fill='red',tags='time')
+			self.canvas.create_rectangle(0,0,self.canvasWidth-self.s,self.canvasHeight/2/2/2/2/2/2,fill='red',tags='time')
 			self.time-=0.5
+			self.s+=25
 			self.canvas.after(500,self._timer)
 
 	def timer(self):

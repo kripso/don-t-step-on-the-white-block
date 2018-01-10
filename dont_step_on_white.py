@@ -3,8 +3,8 @@ import tkinter,random
 class game():
 	def __init__(self):
 
-		self.cW = 1000
-		self.cH = 700
+		self.cW = 800
+		self.cH = 500
 
 		self.canvas = tkinter.Canvas(width = self.cW, height = self.cH, bg = 'white')
 		self.canvas.pack()
@@ -96,6 +96,7 @@ class game():
 
 		self.grid()
 		self.rand_blocks()
+
 	def Start_screen(self):
 
 		if self.control == 0:
@@ -108,13 +109,13 @@ class game():
 
 				self.canvas.create_text(self.cW/2, self.cH/2/2-30, text='High Score: '+str(self.highscore),font= 'Arial 30 bold', fill='black')
 				self.canvas.create_text(self.cW/2, self.cH/2/2, text='Actual Score: '+str(self.actualscore),font= 'Arial 30 bold', fill='black')
-				self.canvas.create_text(self.cW/2, self.cH-self.cH/2/2, text='Game over', font='Arial 40 bold', fill='black')
+				self.canvas.create_text(self.cW/2, self.cH/2+105+self.cH/2/2/2, text='Game over', font='Arial 40 bold', fill='black')
 				self.canvas.update()
 			else:
 				self.Start()
 				self.canvas.create_text(self.cW/2, self.cH/2/2, text='time: '+str(self.time),font= 'Arial 30 bold', fill='black')
 				if self.win_lose==1:
-					self.canvas.create_text(self.cW / 2, self.cH - self.cH / 2 / 2, text='Game over', font='Arial 40 bold', fill='black')
+					self.canvas.create_text(self.cW / 2, self.cH/2+105+self.cH/2/2/2, text='Game over', font='Arial 40 bold', fill='black')
 				else:
 					self.canvas.create_text(self.cW / 2, self.cH - self.cH / 2 / 2, text='You won', font='Arial 40 bold', fill='black')
 
